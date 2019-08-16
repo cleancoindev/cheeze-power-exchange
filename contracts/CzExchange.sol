@@ -17,9 +17,12 @@ contract CzExchange is CzStorage, CzOwnable, WizardConstants {
 
     function exchangeCheeze() public returns (uint) {
         // in progress
+    }
 
+
+
+    function testFunc() public returns (uint) {
         uint test;
-
         uint testCalculate;
 
         testCalculate = test.add(ELEMENT_NEUTRAL);
@@ -28,6 +31,6 @@ contract CzExchange is CzStorage, CzOwnable, WizardConstants {
 
         return test.add(testCalculate);
     }
-    
+
 
 }

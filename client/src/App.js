@@ -46,11 +46,15 @@ class App extends Component {
 
 
   ///////--------------------- Functions of CzExchange ---------------------------
+
+
+
+  ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
     const { accounts, cz_exchange } = this.state;
 
-    const response = await cz_exchange.methods.exchangeCheeze().send({ from: accounts[0] })
-    console.log('=== response of exchangeCheeze function ===', response);  // Debug
+    const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
+    console.log('=== response of testFunc function ===', response);  // Debug
 
     //const event = await response.
 
