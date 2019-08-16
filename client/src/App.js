@@ -18,13 +18,13 @@ import styles from './App.module.scss';
 
 
 // Dash board
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/css/animate.min.css";
-import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
-import "./assets/css/demo.css";
-import "./assets/css/pe-icon-7-stroke.css";
-import AdminLayout from "./layout/Admin.jsx";
+// import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./assets/css/animate.min.css";
+// import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
+// import "./assets/css/demo.css";
+// import "./assets/css/pe-icon-7-stroke.css";
+// import AdminLayout from "./layout/Admin.jsx";
 
 
 
@@ -40,10 +40,21 @@ class App extends Component {
       route: window.location.pathname.replace("/",""),
     };
 
+    this.getTestData = this.getTestData.bind(this);
+
   }
 
 
   ///////--------------------- Functions of CzExchange ---------------------------
+  getTestData = async () => {
+    const { accounts, cz_exchange } = this.state;
+
+    const response = await cz_exchange.methods.exchangeCheeze().send({ from: accounts[0] })
+    console.log('=== response of exchangeCheeze function ===', response);  // Debug
+
+    //const event = await response.
+
+  }
 
 
 
@@ -188,6 +199,8 @@ class App extends Component {
           <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
               <h2>Cheeze Exchange</h2>
+
+              <Button onClick={this.getTestData}>Get Test Data</Button>
             </Card>
           </div>
         </div>
