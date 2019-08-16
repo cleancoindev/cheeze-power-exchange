@@ -8,7 +8,7 @@ import "./cheeze-base/WizardPresale.sol";
 
 
 
-contract CzExchange is CzStorage, CzOwnable, WizardConstants {
+contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants  {
 
     using SafeMath for uint256;
 

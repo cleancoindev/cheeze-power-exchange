@@ -56,8 +56,10 @@ class App extends Component {
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
-    //const event = await response.
 
+    const _owner = "0xc0acee8dc23d754c34de8357b69a04070b5b53f0"
+    const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
+    console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
   }
 
 
