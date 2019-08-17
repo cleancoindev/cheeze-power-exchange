@@ -62,9 +62,12 @@ class App extends Component {
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
 
 
-    const _id = 10
-    const response_3 = await cz_exchange.methods.getWizard(_id).call()
-    console.log('=== response of powerToCost function (through  WizardPresaleInterface contract) ===', response_3);  // Debug
+    const _tokenId = 1
+    const _power = 100 
+    const _affinity = 10
+
+    const response_3 = await cz_exchange.methods.testFunc2(_tokenId, _owner, _power, _affinity).send({ from: accounts[0] })
+    console.log('=== response of testFunc2 function (through  WizardPresale contract) ===', response_3);  // Debug
   }
 
 

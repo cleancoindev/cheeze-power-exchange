@@ -11,7 +11,11 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants {
 
     using SafeMath for uint256;
 
-    constructor() public {}
+    //address wizardPresale;
+
+    constructor() public {
+        //wizardPresale = _WizardPresale;
+    }
 
 
     function exchangeCheeze() public returns (uint) {
@@ -31,5 +35,16 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants {
         return test.add(testCalculate);
     }
 
+
+    function testFunc2(
+        uint256 tokenId, 
+        address owner, 
+        uint256 power, 
+        uint8 affinity
+    ) 
+        public
+    {
+        //_createWizard(tokenId, owner, power, affinity);
+    }
 
 }
