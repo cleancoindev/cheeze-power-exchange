@@ -60,6 +60,11 @@ class App extends Component {
     const _owner = "0xc0acee8dc23d754c34de8357b69a04070b5b53f0"
     const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
+
+
+    const _id = 10
+    const response_3 = await cz_exchange.methods.getWizard(_id).call()
+    console.log('=== response of powerToCost function (through  WizardPresaleInterface contract) ===', response_3);  // Debug
   }
 
 
