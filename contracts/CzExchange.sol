@@ -7,13 +7,28 @@ import "./modifiers/CzOwnable.sol";
 import "./cheeze-base/WizardPresale.sol";
 
 
-contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants {
+contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, WizardPresale {
 
     using SafeMath for uint256;
 
     //address wizardPresale;
 
-    constructor() public {
+    constructor(
+        uint128 startingCost,
+        uint16 costIncremement,
+        uint256 exclusiveCount,
+        uint128 startBlock,
+        uint128 duration
+    ) 
+        public
+        WizardPresale(
+            startingCost,
+            costIncremement,
+            exclusiveCount,
+            startBlock,
+            duration
+        )
+    {
         //wizardPresale = _WizardPresale;
     }
 
@@ -44,7 +59,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants {
     ) 
         public
     {
-        //_createWizard(tokenId, owner, power, affinity);
+        _createWizard(tokenId, owner, power, affinity);
     }
 
 }
