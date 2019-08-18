@@ -12,7 +12,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
     using SafeMath for uint256;
 
     constructor(
-        address _wizardPresaleContractAddr,
+        address wizardPresaleContractAddr,   // External contract address of WizardPresale.sol
         uint128 startingCost,
         uint16 costIncremement,
         uint256 exclusiveCount,
@@ -28,8 +28,8 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
             duration
         )
     {
-        address wizardPresaleContractAddr;
-        wizardPresaleContractAddr = _wizardPresaleContractAddr;
+        address _wizardPresaleContractAddr;
+        _wizardPresaleContractAddr = wizardPresaleContractAddr;
     }
 
 
@@ -52,15 +52,13 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
 
 
     function testFunc2(
-        address wizardPresaleContractAddr,
-        uint256 tokenId, 
-        address owner, 
-        //uint256 power, 
-        uint8 affinity
+        address _wizardPresaleContractAddr,
+        uint256 _cost
     ) 
         public
+        returns (uint256 cost)
     {
-        WizardPresale(wizardPresaleContractAddr).getWizard(1);
+        return WizardPresale(_wizardPresaleContractAddr).costToPower(_cost);
     }
 
 }

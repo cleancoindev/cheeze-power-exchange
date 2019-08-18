@@ -1,7 +1,7 @@
 const CzExchange = artifacts.require("./CzExchange.sol");
 const WizardPresale = artifacts.require("./WizardPresale.sol");
 
-const _wizardPresaleContractAddr = WizardPresale.address;
+const wizardPresaleContractAddr = WizardPresale.address;  // External contract address of WizardPresale.sol
 const startingCost = 1;
 const costIncremement = 1;
 const exclusiveCount = 1;
@@ -11,7 +11,7 @@ const duration = 1;
 module.exports = function(deployer) {
   deployer.deploy(
     CzExchange,
-    _wizardPresaleContractAddr,
+    wizardPresaleContractAddr,  // External contract address of WizardPresale.sol
     startingCost,
     costIncremement,
     exclusiveCount,

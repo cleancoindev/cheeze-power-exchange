@@ -28,21 +28,12 @@ contract('CzExchange', function (accounts) {
 
         // Define constant
         const _wizardPresaleContractAddr = WizardPresale.address
-        const _tokenId = 1
-        const _owner = web3.utils.randomHex(20)
-        const _affinity = 10
+        const _cost = 100
         console.log('=== _wizardPresaleContractAddr ===', _wizardPresaleContractAddr);  // Debug
 
         // Execute function
-        const response = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _tokenId, _owner, _affinity).send({ from: accounts[0] })
+        const response = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _cost).call()
         console.log('=== response of testFunc function ===', response);  // Debug
-
-
-        // return CzExchange.deployed().then(function(instance) {
-        //         return instance.testFunc2(_wizardPresaleContractAddr, _tokenId, _owner, _power, _affinity).send({ from: accounts[0] });
-        //     }).then(function (result) {
-        //        console.log('=== result ===', result);  // Debug 
-        //     });
 
     })
 });
