@@ -50,6 +50,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
 
 
     function testFunc2(
+        WizardPresale wizardPresaleContractAddr,
         uint256 tokenId, 
         address owner, 
         uint256 power, 
@@ -57,7 +58,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
     ) 
         public
     {
-        // WizardPresale()._createWizard(tokenId, owner, power, affinity);
+        //WizardPresale(wizardPresaleContractAddr)._createWizard(tokenId, owner, power, affinity);
     }
 
 }
