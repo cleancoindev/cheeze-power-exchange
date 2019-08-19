@@ -52,23 +52,26 @@ class App extends Component {
   ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
     const { accounts, cz_exchange, wizard_presale } = this.state;
+
     const web3 = new Web3(window.ethereum);
+    //const WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
 
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
 
-    const _owner = await web3.utils.randomHex(20)
-    //const _owner = '0x39b41fff1baef21d99ee31228326c76214c306d7'
+    //const _owner = await web3.utils.randomHex(20)
+    const _owner = '0x39b41fff1baef21d99ee31228326c76214c306d7'
     const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
 
 
-    const _wizardPresaleContractAddr = wizard_presale.address
+    //const _wizardPresaleContractAddr = await WizardPresale.address
     const _cost = 100
-    console.log('=== _wizardPresaleContractAddr ===', _wizardPresaleContractAddr);  // Debug
+    //console.log('=== _wizardPresaleContractAddr ===', _wizardPresaleContractAddr);  // Debug
 
-    const response_3 = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _cost).call()
+    //const response_3 = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _cost).call()
+    const response_3 = await cz_exchange.methods.testFunc2(_cost).call()
     console.log('=== response of testFunc2 function (through  WizardPresale contract) ===', response_3);  // Debug
   }
 
