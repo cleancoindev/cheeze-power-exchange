@@ -2,6 +2,7 @@ const CzExchange = artifacts.require("./CzExchange.sol");
 const WizardPresale = artifacts.require("./WizardPresale.sol");
 
 const wizardPresaleContractAddr = WizardPresale.address;  // External contract address of WizardPresale.sol
+                                                          // If it deploy Rinkeby, it replace this contract address with address deployed Rinkeby
 const startingCost = 1;
 const costIncremement = 1;
 const exclusiveCount = 1;
