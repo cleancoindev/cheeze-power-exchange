@@ -58,7 +58,8 @@ class App extends Component {
     console.log('=== response of testFunc function ===', response);  // Debug
 
 
-    const _owner = web3.utils.randomHex(20)
+    const _owner = await web3.utils.randomHex(20)
+    //const _owner = '0x39b41fff1baef21d99ee31228326c76214c306d7'
     const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
 
