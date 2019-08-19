@@ -29,7 +29,7 @@ import styles from './App.module.scss';
 
 
 class App extends Component {
-  constructor(props) {
+  constructor(props) {    
     super(props);
 
     this.state = {
@@ -51,22 +51,23 @@ class App extends Component {
 
   ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
-    const { accounts, cz_exchange } = this.state;
+    const { accounts, cz_exchange, wizard_presale } = this.state;
+    const web3 = new Web3(window.ethereum);
 
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
 
-    const _owner = "0xc0acee8dc23d754c34de8357b69a04070b5b53f0"
+    const _owner = web3.utils.randomHex(20)
     const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
 
 
-    const _tokenId = 1
-    const _power = 100 
-    const _affinity = 10
+    const _wizardPresaleContractAddr = wizard_presale.address
+    const _cost = 100
+    console.log('=== _wizardPresaleContractAddr ===', _wizardPresaleContractAddr);  // Debug
 
-    const response_3 = await cz_exchange.methods.testFunc2(_tokenId, _owner, _power, _affinity).send({ from: accounts[0] })
+    const response_3 = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _cost).call()
     console.log('=== response of testFunc2 function (through  WizardPresale contract) ===', response_3);  // Debug
   }
 
@@ -90,9 +91,11 @@ class App extends Component {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
  
     let CzExchange = {};
+    let WizardPresale = {};
 
     try {
       CzExchange = require("../../build/contracts/CzExchange.json");  // Load ABI of contract of CzExchange
+      WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
     } catch (e) {
       console.log(e);
     }
@@ -120,8 +123,10 @@ class App extends Component {
         balance = web3.utils.fromWei(balance, 'ether');
 
         let instanceCzExchange = null;
+        let instanceWizardPresale = null;
         let deployedNetwork = null;
 
+        // Create instance of contracts
         if (CzExchange.networks) {
           deployedNetwork = CzExchange.networks[networkId.toString()];
           if (deployedNetwork) {
@@ -132,15 +137,25 @@ class App extends Component {
             console.log('=== instanceCzExchange ===', instanceCzExchange);
           }
         }
+        if (WizardPresale.networks) {
+          deployedNetwork = WizardPresale.networks[networkId.toString()];
+          if (deployedNetwork) {
+            instanceWizardPresale = new web3.eth.Contract(
+              WizardPresale.abi,
+              deployedNetwork && deployedNetwork.address,
+            );
+            console.log('=== instanceWizardPresale ===', instanceWizardPresale);
+          }
+        }
 
-        if (instanceCzExchange) {
+        if (instanceCzExchange || instanceWizardPresale) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, cz_exchange: instanceCzExchange }, () => {
-              this.refreshValues(instanceCzExchange);
+            isMetaMask, cz_exchange: instanceCzExchange, wizard_presale: instanceWizardPresale }, () => {
+              this.refreshValues(instanceCzExchange, instanceWizardPresale);
               setInterval(() => {
-                this.refreshValues(instanceCzExchange);
+                this.refreshValues(instanceCzExchange, instanceWizardPresale);
               }, 5000);
             });
         }
@@ -163,9 +178,12 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceCzExchange) => {
+  refreshValues = (instanceCzExchange, instanceWizardPresale) => {
     if (instanceCzExchange) {
       console.log('refreshValues of instanceCzExchange');
+    }
+    if (instanceWizardPresale) {
+      console.log('refreshValues of instanceWizardPresale');
     }
   }
 

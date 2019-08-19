@@ -18,7 +18,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
         uint256 exclusiveCount,
         uint128 startBlock,
         uint128 duration
-    ) 
+    )
         public
         WizardPresale(
             startingCost,
