@@ -34,8 +34,9 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
     }
 
 
-    function exchangeCheeze() public returns (uint) {
+    function exchangeCheeze(uint256 _tokenId, address _owner, uint8 _affinity) public returns (uint256 tokenId, address owner, uint8 affinity) {
         // in progress
+        WizardPresale(_wizardPresaleContractAddr).conjureExclusiveWizard(_tokenId, _owner, _affinity);
     }
 
 

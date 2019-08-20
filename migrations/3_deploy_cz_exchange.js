@@ -20,8 +20,3 @@ module.exports = function(deployer) {
     duration
   );
 };
-
-
-// module.exports = function(deployer) {
-//   deployer.deploy(CzExchange);
-// };
