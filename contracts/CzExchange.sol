@@ -11,7 +11,7 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
 
     using SafeMath for uint256;
 
-    address _wizardPresaleContractAddr;
+    address _wizardPresaleContractAddr;  // For assigning the contract address of WizardPresale.sol
 
     constructor(
         address wizardPresaleContractAddr,   // External contract address of WizardPresale.sol
@@ -22,24 +22,21 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
         uint128 duration
     )
         public
-        WizardPresale(
+        WizardPresale(         // Assign value of constructor of inherited contract of WizardPresale.sol
             startingCost,
             costIncremement,
             exclusiveCount,
             startBlock,
             duration
         )
-        //returns (address _wizardPresaleContractAddr)
     {
-        //address _wizardPresaleContractAddr;
         _wizardPresaleContractAddr = wizardPresaleContractAddr;
-
-        //return _wizardPresaleContractAddr;
     }
 
 
-    function exchangeCheeze() public returns (uint) {
+    function exchangeCheeze(uint256 _tokenId, address _owner, uint8 _affinity) public returns (uint256 tokenId, address owner, uint8 affinity) {
         // in progress
+        WizardPresale(_wizardPresaleContractAddr).conjureExclusiveWizard(_tokenId, _owner, _affinity);
     }
 
 
@@ -57,7 +54,6 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
 
 
     function testFunc2(
-        //address _wizardPresaleContractAddr,
         uint256 _cost
     ) 
         public

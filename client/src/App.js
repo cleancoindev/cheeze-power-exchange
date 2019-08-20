@@ -59,20 +59,19 @@ class App extends Component {
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
-
-    //const _owner = await web3.utils.randomHex(20)
     const _owner = '0x39b41fff1baef21d99ee31228326c76214c306d7'
     const response_2 = await cz_exchange.methods.balanceOf(_owner).call()
     console.log('=== response of balanceOf function (through inherited  WizardPresaleNFT contract) ===', response_2);  // Debug
 
-
-    //const _wizardPresaleContractAddr = await WizardPresale.address
     const _cost = 100
-    //console.log('=== _wizardPresaleContractAddr ===', _wizardPresaleContractAddr);  // Debug
-
-    //const response_3 = await cz_exchange.methods.testFunc2(_wizardPresaleContractAddr, _cost).call()
     const response_3 = await cz_exchange.methods.testFunc2(_cost).call()
-    console.log('=== response of testFunc2 function (through  WizardPresale contract) ===', response_3);  // Debug
+    console.log('=== response of testFunc2 function (through WizardPresale contract) ===', response_3);  // Debug
+
+    const _tokenId = 2
+    const _affinity = 10
+
+    const response_4 = await cz_exchange.methods.exchangeCheeze(_tokenId, _owner, _affinity).send({ from: accounts[0] })
+    console.log('=== response of exchangeCheeze function (through WizardPresale contract) ===', response_4);  // Debug
   }
 
 
