@@ -51,10 +51,20 @@ class App extends Component {
 
   ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
-    const { accounts, cz_exchange, wizard_presale } = this.state;
+    const { accounts, cz_exchange, wizard_presale, oracle_wizard_data } = this.state;
 
     const web3 = new Web3(window.ethereum);
     //const WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
+
+
+    const _myid = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
+    const _result = "100";
+    const _proof = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
+    const response_5 = await oracle_wizard_data.methods.__callback(_myid, _result, _proof).send({ from: accounts[0] })
+    console.log('=== response of oracle_wizard_data function ===', response_5);  // Debug
+
+
+
 
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
@@ -67,7 +77,7 @@ class App extends Component {
     const response_3 = await cz_exchange.methods.testFunc2(_cost).call()
     console.log('=== response of testFunc2 function (through WizardPresale contract) ===', response_3);  // Debug
 
-    const _tokenId = 2
+    const _tokenId = 0
     const _affinity = 10
 
     const response_4 = await cz_exchange.methods.exchangeCheeze(_tokenId, _owner, _affinity).send({ from: accounts[0] })
@@ -95,10 +105,12 @@ class App extends Component {
  
     let CzExchange = {};
     let WizardPresale = {};
+    let OracleWizardData = {};
 
     try {
-      CzExchange = require("../../build/contracts/CzExchange.json");  // Load ABI of contract of CzExchange
+      CzExchange = require("../../build/contracts/CzExchange.json");        // Load ABI of contract of CzExchange
       WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
+      OracleWizardData = require("../../build/contracts/OracleWizardData.json");  // Load ABI of contract of OracleWizardData
     } catch (e) {
       console.log(e);
     }
@@ -127,6 +139,7 @@ class App extends Component {
 
         let instanceCzExchange = null;
         let instanceWizardPresale = null;
+        let instanceOracleWizardData = null;
         let deployedNetwork = null;
 
         // Create instance of contracts
@@ -150,15 +163,25 @@ class App extends Component {
             console.log('=== instanceWizardPresale ===', instanceWizardPresale);
           }
         }
+        if (OracleWizardData.networks) {
+          deployedNetwork = OracleWizardData.networks[networkId.toString()];
+          if (deployedNetwork) {
+            instanceOracleWizardData = new web3.eth.Contract(
+              OracleWizardData.abi,
+              deployedNetwork && deployedNetwork.address,
+            );
+            console.log('=== instanceOracleWizardData ===', instanceOracleWizardData);
+          }
+        }
 
-        if (instanceCzExchange || instanceWizardPresale) {
+        if (instanceCzExchange || instanceWizardPresale || instanceOracleWizardData) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, cz_exchange: instanceCzExchange, wizard_presale: instanceWizardPresale }, () => {
-              this.refreshValues(instanceCzExchange, instanceWizardPresale);
+            isMetaMask, cz_exchange: instanceCzExchange, wizard_presale: instanceWizardPresale, oracle_wizard_data: instanceOracleWizardData }, () => {
+              this.refreshValues(instanceCzExchange, instanceWizardPresale, instanceOracleWizardData);
               setInterval(() => {
-                this.refreshValues(instanceCzExchange, instanceWizardPresale);
+                this.refreshValues(instanceCzExchange, instanceWizardPresale, instanceOracleWizardData);
               }, 5000);
             });
         }
@@ -181,12 +204,15 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceCzExchange, instanceWizardPresale) => {
+  refreshValues = (instanceCzExchange, instanceWizardPresale, instanceOracleWizardData) => {
     if (instanceCzExchange) {
       console.log('refreshValues of instanceCzExchange');
     }
     if (instanceWizardPresale) {
       console.log('refreshValues of instanceWizardPresale');
+    }
+    if (instanceOracleWizardData) {
+      console.log('refreshValues of instanceOracleWizardData');
     }
   }
 
