@@ -26,7 +26,7 @@ contract OracleWizardData is usingProvable {
     )
         public
     {
-        require(msg.sender == provable_cbAddress());
+        //require(msg.sender == provable_cbAddress());
         update(); // Recursively update the price stored in the contract...
         priceETHXBT = _result;
         emit LogNewKrakenPriceTicker(priceETHXBT);

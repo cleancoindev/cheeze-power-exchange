@@ -56,16 +56,6 @@ class App extends Component {
     const web3 = new Web3(window.ethereum);
     //const WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
 
-
-    const _myid = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
-    const _result = "100";
-    const _proof = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
-    const response_5 = await oracle_wizard_data.methods.__callback(_myid, _result, _proof).send({ from: accounts[0] })
-    console.log('=== response of oracle_wizard_data function ===', response_5);  // Debug
-
-
-
-
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
@@ -82,6 +72,13 @@ class App extends Component {
 
     const response_4 = await cz_exchange.methods.exchangeCheeze(_tokenId, _owner, _affinity).send({ from: accounts[0] })
     console.log('=== response of exchangeCheeze function (through WizardPresale contract) ===', response_4);  // Debug
+
+    // Oracle
+    const _myid = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
+    const _result = "";
+    const _proof = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
+    const response_5 = await oracle_wizard_data.methods.__callback(_myid, _result, _proof).send({ from: accounts[0] })
+    console.log('=== response of oracle_wizard_data function ===', response_5);  // Debug
   }
 
 
