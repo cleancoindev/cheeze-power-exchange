@@ -1,8 +1,5 @@
-pragma solidity >=0.5.6 <0.6.0;
-
-
-
-
+pragma solidity >=0.4.22 <0.6.0;
+//pragma solidity >=0.5.6 <0.6.0;
 
 
 /// @title ERC165Interface
