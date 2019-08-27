@@ -67,18 +67,23 @@ class App extends Component {
     const response_3 = await cz_exchange.methods.testFunc2(_cost).call()
     console.log('=== response of testFunc2 function (through WizardPresale contract) ===', response_3);  // Debug
 
+    /*
     const _tokenId = 0
     const _affinity = 10
 
     const response_4 = await cz_exchange.methods.exchangeCheeze(_tokenId, _owner, _affinity).send({ from: accounts[0] })
     console.log('=== response of exchangeCheeze function (through WizardPresale contract) ===', response_4);  // Debug
+    */
 
     // Oracle
+    /*
     const _myid = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
     const _result = "";
     const _proof = "0xaf7658cc1e17d1494cbe6b3b8d78b3cc7cb48090";
     const response_5 = await oracle_wizard_data.methods.__callback(_myid, _result, _proof).send({ from: accounts[0] })
     console.log('=== response of oracle_wizard_data function ===', response_5);  // Debug
+    */
+
   }
 
 
