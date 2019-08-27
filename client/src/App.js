@@ -51,7 +51,7 @@ class App extends Component {
 
   ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
-    const { accounts, cz_exchange, wizard_presale, oracle_wizard_data } = this.state;
+    const { accounts, cz_exchange, cz_power_exchange, wizard_presale, oracle_wizard_data } = this.state;
 
     const web3 = new Web3(window.ethereum);
     //const WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
@@ -84,6 +84,9 @@ class App extends Component {
     console.log('=== response of oracle_wizard_data function ===', response_5);  // Debug
     */
 
+    const response_6 = await cz_power_exchange.methods.testFuncOfPowerExchange().send({ from: accounts[0] })
+    console.log('=== response of testFuncOfPowerExchange function ===', response_6);  // Debug
+
   }
 
 
@@ -106,11 +109,13 @@ class App extends Component {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
  
     let CzExchange = {};
+    let CzPowerExchange = {};
     let WizardPresale = {};
     let OracleWizardData = {};
 
     try {
       CzExchange = require("../../build/contracts/CzExchange.json");        // Load ABI of contract of CzExchange
+      CzPowerExchange = require("../../build/contracts/CzPowerExchange.json");        // Load ABI of contract of         let instanceCzExchange = null;CzPowerExchange
       WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
       OracleWizardData = require("../../build/contracts/OracleWizardData.json");  // Load ABI of contract of OracleWizardData
     } catch (e) {
@@ -140,6 +145,7 @@ class App extends Component {
         balance = web3.utils.fromWei(balance, 'ether');
 
         let instanceCzExchange = null;
+        let instanceCzPowerExchange = null;
         let instanceWizardPresale = null;
         let instanceOracleWizardData = null;
         let deployedNetwork = null;
@@ -153,6 +159,16 @@ class App extends Component {
               deployedNetwork && deployedNetwork.address,
             );
             console.log('=== instanceCzExchange ===', instanceCzExchange);
+          }
+        }
+        if (CzPowerExchange.networks) {
+          deployedNetwork = CzPowerExchange.networks[networkId.toString()];
+          if (deployedNetwork) {
+            instanceCzPowerExchange = new web3.eth.Contract(
+              CzPowerExchange.abi,
+              deployedNetwork && deployedNetwork.address,
+            );
+            console.log('=== instanceCzPowerExchange ===', instanceCzPowerExchange);
           }
         }
         if (WizardPresale.networks) {
@@ -176,11 +192,11 @@ class App extends Component {
           }
         }
 
-        if (instanceCzExchange || instanceWizardPresale || instanceOracleWizardData) {
+        if (instanceCzExchange || instanceCzPowerExchange || instanceWizardPresale || instanceOracleWizardData) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, cz_exchange: instanceCzExchange, wizard_presale: instanceWizardPresale, oracle_wizard_data: instanceOracleWizardData }, () => {
+            isMetaMask, cz_exchange: instanceCzExchange, cz_power_exchange: instanceCzPowerExchange, wizard_presale: instanceWizardPresale, oracle_wizard_data: instanceOracleWizardData }, () => {
               this.refreshValues(instanceCzExchange, instanceWizardPresale, instanceOracleWizardData);
               setInterval(() => {
                 this.refreshValues(instanceCzExchange, instanceWizardPresale, instanceOracleWizardData);
@@ -206,9 +222,12 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceCzExchange, instanceWizardPresale, instanceOracleWizardData) => {
+  refreshValues = (instanceCzExchange, instanceCzPowerExchange, instanceWizardPresale, instanceOracleWizardData) => {
     if (instanceCzExchange) {
       console.log('refreshValues of instanceCzExchange');
+    }
+    if (instanceCzPowerExchange) {
+      console.log('refreshValues of instanceCzPowerExchange');
     }
     if (instanceWizardPresale) {
       console.log('refreshValues of instanceWizardPresale');
