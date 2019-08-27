@@ -7,7 +7,7 @@ import "./modifiers/CzOwnable.sol";
 import "./cheeze-base/WizardPresale.sol";
 
 
-contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, WizardPresale {
+contract CzPowerExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, WizardPresale {
 
     using SafeMath for uint256;
 
@@ -34,35 +34,8 @@ contract CzExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConstants, 
     }
 
 
-    function exchangeCheeze(
-        uint256 _tokenId, address _owner, uint8 _affinity
-    ) 
-        public payable returns (uint256 tokenId, address owner, uint8 affinity) 
-    {
-        WizardPresale(_wizardPresaleContractAddr).conjureExclusiveWizard(_tokenId, _owner, _affinity);
-    }
-
-
-
-    function testFunc() public returns (uint) {
-        uint test;
-        uint testCalculate;
-
-        testCalculate = test.add(ELEMENT_NEUTRAL);
-
-        emit TestEvent(testCalculate);
-
-        return test.add(testCalculate);
-    }
-
-
-    function testFunc2(
-        uint256 _cost
-    ) 
-        public
-        returns (uint256 cost)
-    {
-        return WizardPresale(_wizardPresaleContractAddr).costToPower(_cost);
+    function testFuncOfPowerExchange() public returns (bool) {
+        return true;
     }
 
 }
