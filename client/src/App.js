@@ -87,6 +87,10 @@ class App extends Component {
     const response_6 = await cz_power_exchange.methods.testFuncOfPowerExchange().send({ from: accounts[0] })
     console.log('=== response of testFuncOfPowerExchange function ===', response_6);  // Debug
 
+
+    let _id = 1
+    const response_7 = await cz_power_exchange.methods.powerExchange(_id).call()
+    console.log('=== response of powerExchange function ===', response_7);  // Debug
   }
 
 

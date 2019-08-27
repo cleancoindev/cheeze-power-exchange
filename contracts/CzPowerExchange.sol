@@ -34,6 +34,14 @@ contract CzPowerExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConsta
     }
 
 
+
+    function powerExchange(uint256 _id) public returns (bool) {
+        getWizard(_id);  // this function is referenced from WizardPresale contract
+
+        return true;
+    }
+
+
     function testFuncOfPowerExchange() public returns (bool) {
         return true;
     }
