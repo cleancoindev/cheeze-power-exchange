@@ -845,7 +845,7 @@ contract TournamentInterface is TournamentInterfaceId, ERC165Interface {
     function enterWizards(uint256[] calldata wizardIds, uint88[] calldata powers) external payable;
 
     // Returns true if the Tournament is currently running and active.
-    function isActive() external view returns (bool);
+    //function isActive() external view returns (bool);
 
     function powerScale() external view returns (uint256);
 }

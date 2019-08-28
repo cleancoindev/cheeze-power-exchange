@@ -525,7 +525,7 @@ contract WizardGuildInterface is IERC721, WizardGuildInterfaceId {
     ///               or Air (4, sometimes called "Wind" in the code). Future Wizard Series may have
     ///               additional Affinities, and clients of this API should be prepared for that
     ///               eventuality.
-    function getWizard(uint256 id) external view returns (address owner, uint88 innatePower, uint8 affinity, bytes32 metadata);
+    //function getWizard(uint256 id) external view returns (address owner, uint88 innatePower, uint8 affinity, bytes32 metadata);
 
     /// @notice Sets the affinity for a Wizard that doesn't already have its elemental affinity chosen.
     ///         Only usable for Exclusive Wizards (all non-Exclusives must have their affinity chosen when
@@ -576,7 +576,7 @@ contract WizardGuildInterface is IERC721, WizardGuildInterfaceId {
 
     /// @notice Returns true if the given "spender" address is allowed to manipulate the given token
     ///         (either because it is the owner of that token, has been given approval to manage that token)
-    function isApprovedOrOwner(address spender, uint256 tokenId) external view returns (bool);
+    //function isApprovedOrOwner(address spender, uint256 tokenId) external view returns (bool);
 
     /// @notice Verifies that a given signature represents authority to control the given Wizard ID,
     ///         reverting otherwise. It handles three cases:
@@ -595,7 +595,7 @@ contract WizardGuildInterface is IERC721, WizardGuildInterfaceId {
     /// @param wizardId The Wizard ID whose control is in question
     /// @param hash The message hash we are authenticating against
     /// @param sig the signature data; can be longer than 65 bytes for ERC-1654
-    function verifySignature(uint256 wizardId, bytes32 hash, bytes calldata sig) external view;
+    //function verifySignature(uint256 wizardId, bytes32 hash, bytes calldata sig) external view;
 
     /// @notice Convienence function that verifies signatures for two wizards using equivalent logic to
     ///         verifySignature(). Included to save on cross-contract calls in the common case where we
@@ -910,7 +910,13 @@ contract WizardGuild is AccessControl, WizardNFT, WizardGuildInterface, ERC165Qu
     ///               or Air (4, sometimes called "Wind" in the code). Future Wizard Series may have
     ///               additional Affinities, and clients of this API should be prepared for that
     ///               eventuality.
-    function getWizard(uint256 id) public view returns (address owner, uint88 innatePower, uint8 affinity, bytes32 metadata) {
+
+
+    function getWizard(uint256 id) 
+        public 
+        view
+        returns (address owner, uint88 innatePower, uint8 affinity, bytes32 metadata) 
+    {
         Wizard memory wizard = wizardsById[id];
         require(wizard.owner != address(0), "Wizard does not exist");
         (owner, innatePower, affinity, metadata) = (wizard.owner, wizard.innatePower, wizard.affinity, wizard.metadata);
