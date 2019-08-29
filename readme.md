@@ -81,7 +81,12 @@ http://127.0.0.1:3000
 ***
 
 ## 【Reference】
-- Documents of Cheeze Wizards Hackathon
+- Documents of Cheeze Wizards Hackathon  
 https://coinlist.co/build/cheezewizards
-
+  - Cheeze Wizards
+  - Dapper
+  - 0x
+  - DAOstack
+  - Kyber Networks
+  - OpenSea
 
