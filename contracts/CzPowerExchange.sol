@@ -11,10 +11,16 @@ contract CzPowerExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConsta
 
     using SafeMath for uint256;
 
-    address _wizardPresaleContractAddr;  // For assigning the contract address of WizardPresale.sol
+    address _wizardPresaleContractAddr;               // For assigning the contract address of WizardPresale.sol
+    address _inauguralGateKeeperContractAddr;         // For assigning the contract address of InauguralGateKeeper.sol
+    address _threeAffinityDuelResolverContractAddr;   // For assigning the contract address of ThreeAffinityDuelResolver.sol
+    address _wizardGuildContractAddr;                 // For assigning the contract address of WizardGuild.sol
 
     constructor(
-        address wizardPresaleContractAddr,   // External contract address of WizardPresale.sol
+        address wizardPresaleContractAddr,             // External contract address of WizardPresale.sol
+        address inauguralGateKeeperContractAddr,       // External contract address of InauguralGateKeeper.sol
+        address threeAffinityDuelResolverContractAddr, // External contract address of ThreeAffinityDuelResolver.sol
+        address wizardGuildContractAddr,               // External contract address of WizardGuild.sol
         uint128 startingCost,
         uint16 costIncremement,
         uint256 exclusiveCount,
@@ -31,6 +37,9 @@ contract CzPowerExchange is CzStorage, CzOwnable, WizardPresaleNFT, WizardConsta
         )
     {
         _wizardPresaleContractAddr = wizardPresaleContractAddr;
+        _inauguralGateKeeperContractAddr = inauguralGateKeeperContractAddr;
+        _threeAffinityDuelResolverContractAddr = threeAffinityDuelResolverContractAddr;
+        _wizardGuildContractAddr = wizardGuildContractAddr;
     }
 
 
