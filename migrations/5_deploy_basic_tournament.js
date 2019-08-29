@@ -1,4 +1,8 @@
-const BasicTournament = artifacts.require("./BasicTournament.sol");
+const BasicTournament = artifacts.require("BasicTournament");
+const TournamentTimeAbstract = artifacts.require("TournamentTimeAbstract");
+const AccessControl = artifacts.require("AccessControl");
+
+
 
 /**
  * @Notice: BasicTournament.sol has 3 constructors entirely
@@ -36,8 +40,19 @@ const newCfoAddress = '0x127c9e6563be225c923f6155d7ca9ef2098d8fd2'
 
 module.exports = function(deployer) {
   deployer.deploy(
-    BasicTournament,
+    TournamentTimeAbstract,
+    _cooAddress,
+    tournamentStartBlock,
+    admissionDuration,
+    revivalDuration,
+    ascensionDuration,
+    fightDuration,
+    cullingDuration,
+    duelTimeoutDuration,
+    blueMoldBasePower,
+    sessionsBetweenMoldDoubling,
 
+    BasicTournament,
     cooAddress_,
     duelResolver_,
     powerScale_,
@@ -51,17 +66,7 @@ module.exports = function(deployer) {
     sessionsBetweenMoldDoubling_,
     duelTimeoutBlocks_,
 
-    _cooAddress,
-    tournamentStartBlock,
-    admissionDuration,
-    revivalDuration,
-    ascensionDuration,
-    fightDuration,
-    cullingDuration,
-    duelTimeoutDuration,
-    blueMoldBasePower,
-    sessionsBetweenMoldDoubling,
-
+    AccessControl,
     newCooAddress,
     newCfoAddress
   );

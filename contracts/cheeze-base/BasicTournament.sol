@@ -870,6 +870,7 @@ contract TournamentInterface is TournamentInterfaceId, ERC165Interface {
 ///                 of this Tournament contract that hasn't been modified!), but once your Wizard has
 ///                 been entered, you can have confidence that the rules of the contest will be followed
 ///                 correctly, without fear of manipulation or fraud on the part of the contest creators.
+
 contract BasicTournament is TournamentInterface, TournamentTimeAbstract, WizardConstants,
     DuelResolverInterfaceId {
 
