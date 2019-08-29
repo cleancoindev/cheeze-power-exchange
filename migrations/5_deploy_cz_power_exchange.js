@@ -10,10 +10,10 @@ const WizardGuild = artifacts.require("./WizardGuild.sol");
  */
 const wizardPresaleContractAddr = WizardPresale.address;  // External contract address of WizardPresale.sol
                                                           // If it deploy Rinkeby, it replace this contract address with address deployed Rinkeby
-const BasicTournamentContractAddr = BasicTournament.address;
+//const BasicTournamentContractAddr = BasicTournament.address;
 const InauguralGateKeeperContractAddr = InauguralGateKeeper.address;
 const ThreeAffinityDuelResolverContractAddr = ThreeAffinityDuelResolver.address;
-const WizardGuildContractAddr = WizardGuildContractAddr.address;
+const WizardGuildContractAddr = WizardGuild.address;
 
 
 const startingCost = 1;
@@ -26,7 +26,7 @@ module.exports = function(deployer) {
   deployer.deploy(
     CzPowerExchange,
     wizardPresaleContractAddr,  // External contract address of WizardPresale.sol
-    BasicTournamentContractAddr,
+    //BasicTournamentContractAddr,
     InauguralGateKeeperContractAddr,
     ThreeAffinityDuelResolverContractAddr,
     WizardGuildContractAddr,
