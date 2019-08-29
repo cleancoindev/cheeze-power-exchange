@@ -10,7 +10,11 @@ const setElementalWizardIncrement = 10
 module.exports = function(deployer) {
   deployer.deploy(
     InauguralGateKeeper,
-
+    setCooAddress,
+    setCfoAddress,
+    setNeutralWizardCost,
+    setElementalWizardCost,
+    setElementalWizardIncrement
   );
 };
 
