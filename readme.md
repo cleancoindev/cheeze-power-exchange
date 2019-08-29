@@ -19,7 +19,7 @@
 
 ***
 
-##【Setup】
+## 【Setup】
 
 ### Setup private network by using Ganache
 1. Download Ganache from link below
@@ -75,3 +75,13 @@ http://127.0.0.1:3000
 
 
 ## 【Work flow】
+
+&nbsp;
+
+***
+
+## 【Reference】
+- Documents of Cheeze Wizards Hackathon
+https://coinlist.co/build/cheezewizards
+
+
