@@ -1,22 +1,35 @@
 const BasicTournament = artifacts.require("./BasicTournament.sol");
 
 // In progress
-const cooAddress_ = 
-const duelResolver_ = 
-const powerScale_ = 
-const tournamentStartBlock_ = 
-const admissionDuration_ = 
-const revivalDuration_ = 
-const fightDuration_ = 
-const cullingDuration_ = 
-const blueMoldBasePower_ = 
-const sessionsBetweenMoldDoubling_ = 
-const duelTimeoutBlocks_ = 
+const cooAddress_ = '0x800da5395c4d2e8a5625ebfbf6a8c713c6fba7c3'
+const duelResolver_ = '0x597c457cc3772b902e834890e133dbbd58b8e6a0'
+const powerScale_ = 100
+const tournamentStartBlock_ = 1000 
+const admissionDuration_ = 100
+const revivalDuration_ = 100
+const ascensionDuration_ = 100
+const fightDuration_ = 100
+const cullingDuration_ = 100
+const blueMoldBasePower_ = 100
+const sessionsBetweenMoldDoubling_ = 100
+const duelTimeoutBlocks_ = 1000
 
 module.exports = function(deployer) {
   deployer.deploy(
     BasicTournament,
     // in progress
+    cooAddress_,
+    duelResolver_,
+    powerScale_,
+    tournamentStartBlock_,
+    admissionDuration_,
+    revivalDuration_,
+    ascensionDuration_,
+    fightDuration_,
+    cullingDuration_,
+    blueMoldBasePower_,
+    sessionsBetweenMoldDoubling_,
+    duelTimeoutBlocks_
   );
 };
 
