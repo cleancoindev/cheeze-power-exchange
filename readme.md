@@ -14,7 +14,7 @@
 ## 【Setup】
 
 ### Setup private network by using Ganache
-1. Download Ganache from link below
+1. Download Ganache from link below  
 https://www.trufflesuite.com/ganache  
 
 
@@ -73,7 +73,7 @@ http://127.0.0.1:3000
 ***
 
 ## 【Reference】
-- cheeze-wizards-hackathon-source
+- cheeze-wizards-hackathon-source  
 https://github.com/dapperlabs/cheeze-wizards-hackathon-source
 
 
