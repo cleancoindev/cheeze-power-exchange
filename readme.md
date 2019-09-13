@@ -1,17 +1,9 @@
-# Cheeze Exchange
+# Cheeze Power Exchange
 
 ***
 
-## 【Introduction of Cheeze Exchange】
-
-
-&nbsp;
-
-
-***
-
-## 【How does smart contract work in this DApp?】
-
+## 【Introduction of Cheeze Power Exchange】
+- Cheeze Power Exchange is decentralized exchange of powers between charactor-to-charactor by using ERC721
 
 
 &nbsp;
@@ -81,6 +73,10 @@ http://127.0.0.1:3000
 ***
 
 ## 【Reference】
+- cheeze-wizards-hackathon-source
+https://github.com/dapperlabs/cheeze-wizards-hackathon-source
+
+
 - Documents of Cheeze Wizards Hackathon  
 https://coinlist.co/build/cheezewizards
   - Cheeze Wizards
